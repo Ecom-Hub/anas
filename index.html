@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Anas Qureshi | Portfolio</title>
+    <meta name="description" content="Portfolio of Muhammad Anas Qureshi - E-commerce Specialist & Administrative Professional">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#6366f1', // Indigo
+                        secondary: '#a855f7', // Purple
+                        dark: '#0f172a',
+                        darker: '#020617',
+                        accent: '#2dd4bf', // Teal
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%239C92AC\" fill-opacity=\"0.05\"%3E%3Cpath d=\"M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Fix for navigation covering titles */
+        html {
+            scroll-padding-top: 5rem; 
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6366f1;
+        }
+
+        /* Glassmorphism Utilities */
+        .glass {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .glass-card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-card:hover {
+            background: rgba(30, 41, 59, 0.6);
+            border-color: rgba(99, 102, 241, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -10px rgba(99, 102, 241, 0.2);
+        }
+
+        /* Text Gradient */
+        .text-gradient {
+            background: linear-gradient(to right, #2dd4bf, #6366f1, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Loader */
+        .loader {
+            border: 3px solid rgba(255,255,255,0.1);
+            border-left-color: #6366f1;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-darker text-slate-300 antialiased overflow-x-hidden selection:bg-primary selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass top-0 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0 font-display font-bold text-2xl text-white tracking-tight cursor-pointer" onclick="window.scrollTo(0,0)">
+                    MA<span class="text-primary">.</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="hover:text-white hover:bg-white/10 px-3 py-2 rounded-md text-sm font-medium transition-colors nav-link">Home</a>
+                        <a href="#about" class="hover:text-white hover:bg-white/10 px-3 py-2 rounded-md text-sm font-medium transition-colors nav-link">About</a>
+                        <a href="#projects" class="hover:text-white hover:bg-white/10 px-3 py-2 rounded-md text-sm font-medium transition-colors nav-link">Projects</a>
+                        <a href="#ai-tools" class="hover:text-white hover:bg-white/10 px-3 py-2 rounded-md text-sm font-medium transition-colors nav-link text-accent">AI Tools</a>
+                        <a href="#experience" class="hover:text-white hover:bg-white/10 px-3 py-2 rounded-md text-sm font-medium transition-colors nav-link">Experience</a>
+                        <a href="#contact" class="px-4 py-2 rounded-full bg-primary text-white text-sm font-medium hover:bg-secondary transition-all shadow-lg shadow-primary/30">Contact Me</a>
+                    </div>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" id="mobile-menu-btn" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none">
+                        <i data-lucide="menu" class="h-6 w-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu (Hidden by default) -->
+        <div class="hidden md:hidden bg-darker border-b border-white/10" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-white/10 mobile-link">Home</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/10 mobile-link">About</a>
+                <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/10 mobile-link">Projects</a>
+                <a href="#ai-tools" class="block px-3 py-2 rounded-md text-base font-medium text-accent hover:text-white hover:bg-white/10 mobile-link">AI Tools</a>
+                <a href="#experience" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/10 mobile-link">Experience</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-primary font-bold mobile-link">Contact Me</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center bg-hero-pattern pt-20">
+        <!-- Background Glows -->
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[100px] -z-10"></div>
+        <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-[100px] -z-10"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid md:grid-cols-2 gap-12 items-center">
+            <div data-aos="fade-right" data-aos-duration="1000" class="order-2 md:order-1 text-center md:text-left">
+                <div class="inline-block px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6">
+                    <span class="text-accent text-sm font-semibold tracking-wider uppercase">Available for Remote Work</span>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-display font-bold text-white leading-tight mb-6">
+                    Hello, I'm <br>
+                    <span class="text-gradient">Muhammad Anas</span>
+                </h1>
+                <p class="text-lg md:text-xl text-slate-400 mb-8 max-w-lg mx-auto md:mx-0 leading-relaxed">
+                    E-commerce Specialist, Administrative Professional, and Tech Enthusiast based in Multan. I streamline operations and build digital value.
+                </p>
+                <div class="flex flex-wrap justify-center md:justify-start gap-4">
+                    <a href="#contact" class="px-8 py-4 rounded-full bg-white text-darker font-bold hover:scale-105 transition-transform shadow-xl shadow-white/10 flex items-center gap-2">
+                        Get in Touch <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                    <a href="#projects" class="px-8 py-4 rounded-full border border-white/20 text-white hover:bg-white/10 transition-colors flex items-center gap-2">
+                        View Projects <i data-lucide="folder" class="w-4 h-4"></i>
+                    </a>
+                </div>
+                
+                <!-- Social Links -->
+                <div class="mt-10 flex justify-center md:justify-start gap-6">
+                    <a href="https://www.linkedin.com/in/muhammad-anas-1b41ab202" target="_blank" class="text-slate-400 hover:text-primary transition-colors">
+                        <i data-lucide="linkedin" class="w-6 h-6"></i>
+                    </a>
+                    <a href="#contact" class="text-slate-400 hover:text-primary transition-colors">
+                        <i data-lucide="mail" class="w-6 h-6"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Profile Image Side -->
+            <div class="relative order-1 md:order-2 flex justify-center" data-aos="fade-left" data-aos-duration="1000">
+                <div class="relative w-[300px] h-[400px] md:w-[400px] md:h-[500px] animate-float">
+                    <!-- Abstract Background Shapes -->
+                    <div class="absolute inset-0 bg-gradient-to-tr from-primary via-secondary to-accent rounded-[2rem] rotate-6 opacity-30 blur-lg"></div>
+                    <div class="absolute inset-0 border border-white/10 rounded-[2rem] translate-x-4 translate-y-4 z-0"></div>
+                    
+                    <!-- Main Image Container -->
+                    <div class="absolute inset-0 rounded-[2rem] overflow-hidden bg-darker border border-white/10 shadow-2xl z-10">
+                        <!-- 
+                           GITHUB IMAGE 1:
+                           Ensure "profile1.jpg" is in your GitHub folder.
+                        -->
+                        <img src="profile1.jpg" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000'" alt="Muhammad Anas Qureshi" class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity duration-500">
+                        
+                        <!-- Floating Badge -->
+                        <div class="absolute bottom-6 right-6 bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-xl">
+                             <div class="flex items-center gap-3">
+                                 <div class="bg-green-500 w-3 h-3 rounded-full animate-pulse"></div>
+                                 <div>
+                                     <p class="text-xs text-slate-300 uppercase tracking-wider">Status</p>
+                                     <p class="text-sm font-bold text-white">Open to Work</p>
+                                 </div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-display font-bold text-white mb-4">About <span class="text-gradient">Me</span></h2>
+                <div class="h-1 w-20 bg-gradient-to-r from-primary to-accent mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                 <!-- 
+                    GITHUB IMAGE 2:
+                    Ensure "profile2.jpg" is in your GitHub folder.
+                 -->
+                <div class="relative hidden md:block" data-aos="fade-right">
+                    <div class="relative w-full h-[400px] rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+                         <img src="profile2.jpg" onerror="this.src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1000'" alt="Anas Working" class="w-full h-full object-cover">
+                    </div>
+                    <!-- Decorative Square -->
+                    <div class="absolute -bottom-6 -right-6 w-48 h-48 bg-white/5 rounded-2xl -z-10 border border-white/5"></div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-8 md:p-12" data-aos="fade-left">
+                    <p class="text-lg text-slate-300 leading-relaxed mb-6">
+                        I am a motivated and detail-oriented professional with diverse experience in computer operations, data entry, and administrative support. I specialize in optimizing workflows to enhance customer satisfaction and ensure efficient operations.
+                    </p>
+                    <p class="text-lg text-slate-300 leading-relaxed">
+                        My expertise extends to E-commerce support, including inventory management, order processing, and company setup (LLC/LTD). Combining strong analytical skills with a passion for technology, I help businesses scale and succeed in the digital landscape.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10 pt-10 border-t border-white/10">
+                        <div class="text-center">
+                            <h4 class="text-3xl font-bold text-white mb-1">3+</h4>
+                            <p class="text-sm text-slate-400">Years Experience</p>
+                        </div>
+                        <div class="text-center">
+                            <h4 class="text-3xl font-bold text-white mb-1">10+</h4>
+                            <p class="text-sm text-slate-400">Certifications</p>
+                        </div>
+                        <div class="text-center">
+                            <h4 class="text-3xl font-bold text-white mb-1">100%</h4>
+                            <p class="text-sm text-slate-400">Client Satisfaction</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects & Work Section -->
+    <section id="projects" class="py-24 bg-black/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-display font-bold text-white mb-4">Featured <span class="text-gradient">Projects</span></h2>
+                <div class="h-1 w-20 bg-gradient-to-r from-primary to-accent mx-auto rounded-full"></div>
+                <p class="mt-4 text-slate-400">Showcasing my expertise in E-commerce, Legal Setup, and Admin Support.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- Project 1: Amazon Account Management -->
+                <div class="glass-card rounded-2xl overflow-hidden group hover:border-primary/50" data-aos="fade-up" data-aos-delay="0">
+                    <div class="relative h-56 bg-darker w-full overflow-hidden">
+                        <!-- Image: Amazon/Ecommerce Dashboard -->
+                        <img src="https://images.unsplash.com/photo-1661956602116-aa6865609028?q=80&w=1000&auto=format&fit=crop" alt="Amazon Dashboard" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darker via-darker/50 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <i data-lucide="shopping-bag" class="w-8 h-8 text-primary mb-2"></i>
+                            <h3 class="text-xl font-bold text-white">Amazon Account Management</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-slate-400 mb-4 text-sm leading-relaxed">
+                            Complete management of Seller Central accounts. From inventory planning and shipment creation to listing optimization and customer service. Ensuring 100% account health.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 text-xs rounded bg-white/5 border border-white/10 text-primary">FBA</span>
+                            <span class="px-2 py-1 text-xs rounded bg-white/5 border border-white/10 text-primary">PPC</span>
+                            <span class="px-2 py-1 text-xs rounded bg-white/5 border border-white/10 text-primary">Listings</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: LLC & LTD Formation -->
+                <div class="glass-card rounded-2xl overflow-hidden group hover:border-secondary/50" data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative h-56 bg-darker w-full overflow-hidden">
+                         <!-- Image: Corporate/Legal -->
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop" alt="Company Formation" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darker via-darker/50 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <i data-lucide="building-2" class="w-8 h-8 text-secondary mb-2"></i>
+                            <h3 class="text-xl font-bold text-white">LLC & LTD Formation</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-slate-400 mb-4 text-sm leading-relaxed">
+                            Strategic business setup services. I handle the complete registration process for US LLCs and UK LTD companies, including EIN acquisition and banking setup.
+                        </p>
+                         <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 text-xs rounded bg-white/5 border border-white/10 text-secondary">US LLC</span>
+                            <span class="px-2 py-1 text-xs rounded bg-white/5 border border-white/10 text-secondary">UK LTD</span>
+                            <span class="px-2 py-1 text-xs rounded bg-white/5 border border-white/10 text-secondary">Banking</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: Product Hunting -->
+                <div class="glass-card rounded-2xl overflow-hidden group hover:border-accent/50" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative h-56 bg-darker w-full overflow-hidden">
+                         <!-- Image: Data Analysis -->
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop" alt="Product Hunting" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darker via-darker/50 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <i data-lucide="search" class="w-8 h-8 text-accent mb-2"></i>
+                            <h3 class="text-xl font-bold text-white">Product Hunting</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-slate-400 mb-4 text-sm leading-relaxed">
+                            Finding winning products with high demand and low competition using premium tools. Comprehensive profit analysis and competitor research.
+                        </p>
+                         <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 text-xs rounded bg-white/5 border border-white/10 text-accent">Helium 10</span>
+                            <span class="px-2 py-1 text-xs rounded bg-white/5 border border-white/10 text-accent">Jungle Scout</span>
+                            <span class="px-2 py-1 text-xs rounded bg-white/5 border border-white/10 text-accent">Keepa</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4: Administrative Support -->
+                <div class="glass-card rounded-2xl overflow-hidden group hover:border-pink-500/50" data-aos="fade-up" data-aos-delay="300">
+                    <div class="relative h-56 bg-darker w-full overflow-hidden">
+                         <!-- Image: Office/Laptop -->
+                        <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=1000&auto=format&fit=crop" alt="Admin Support" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darker via-darker/50 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <i data-lucide="file-text" class="w-8 h-8 text-pink-500 mb-2"></i>
+                            <h3 class="text-xl font-bold text-white">Administrative Support</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-slate-400 mb-4 text-sm leading-relaxed">
+                            Providing top-tier Virtual Assistant services. Managing schedules, data entry, email correspondence, and CRM updates to keep your business organized.
+                        </p>
+                         <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 text-xs rounded bg-white/5 border border-white/10 text-pink-400">Data Entry</span>
+                            <span class="px-2 py-1 text-xs rounded bg-white/5 border border-white/10 text-pink-400">CRM</span>
+                            <span class="px-2 py-1 text-xs rounded bg-white/5 border border-white/10 text-pink-400">Scheduling</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Gemini Powered Tools Section -->
+    <section id="ai-tools" class="py-24 relative overflow-hidden">
+        <!-- Ambient Background -->
+        <div class="absolute left-0 top-1/3 w-96 h-96 bg-primary/10 rounded-full blur-[120px] -z-10"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary/20 to-secondary/20 border border-white/10 mb-4">
+                    <i data-lucide="sparkles" class="w-4 h-4 text-yellow-300"></i>
+                    <span class="text-sm font-bold text-white">Powered by Gemini AI</span>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-display font-bold text-white mb-4">AI Power <span class="text-gradient">Tools</span></h2>
+                <div class="h-1 w-20 bg-gradient-to-r from-primary to-accent mx-auto rounded-full"></div>
+                <p class="mt-4 text-slate-400 max-w-2xl mx-auto">
+                    Experience how I leverage Artificial Intelligence to streamline e-commerce and administrative workflows. Try these demos below!
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                
+                <!-- Tool 1: Product Description Generator -->
+                <div class="glass-card rounded-2xl p-6 md:p-8 border border-white/10" data-aos="fade-right">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="p-3 rounded-lg bg-gradient-to-br from-orange-500 to-pink-600 text-white shadow-lg">
+                            <i data-lucide="shopping-bag" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Amazon Listing Optimizer</h3>
+                            <p class="text-xs text-slate-400">Generates SEO-friendly product descriptions</p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-1">Product Name</label>
+                            <input type="text" id="productName" placeholder="e.g., Wireless Noise Cancelling Headphones" class="w-full bg-black/30 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-primary transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-1">Key Features / Keywords</label>
+                            <textarea id="productFeatures" rows="3" placeholder="e.g., 20 hour battery life, comfortable ear cups, bluetooth 5.0, deep bass..." class="w-full bg-black/30 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-primary transition-colors"></textarea>
+                        </div>
+                        <button onclick="generateDescription()" id="btnDesc" class="w-full py-3 rounded-lg bg-gradient-to-r from-orange-500 to-pink-600 text-white font-bold hover:opacity-90 transition-all shadow-lg flex items-center justify-center gap-2">
+                            <span>Generate Description ✨</span>
+                        </button>
+                        
+                        <!-- Result Area -->
+                        <div id="resultDescContainer" class="hidden mt-4">
+                            <label class="block text-sm font-medium text-slate-300 mb-1">AI Generated Result:</label>
+                            <div class="relative">
+                                <textarea id="resultDesc" rows="6" readonly class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-slate-200 text-sm focus:outline-none"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tool 2: Email Drafter -->
+                <div class="glass-card rounded-2xl p-6 md:p-8 border border-white/10" data-aos="fade-left">
+                     <div class="flex items-center gap-3 mb-6">
+                        <div class="p-3 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500 text-white shadow-lg">
+                            <i data-lucide="mail" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Client Response Drafter</h3>
+                            <p class="text-xs text-slate-400">Drafts professional customer service emails</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-1">Customer Message / Context</label>
+                            <textarea id="emailContext" rows="6" placeholder="e.g., The customer is asking why their package is late. It was shipped yesterday but weather delayed it." class="w-full bg-black/30 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-secondary transition-colors"></textarea>
+                        </div>
+                        <button onclick="draftEmail()" id="btnEmail" class="w-full py-3 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-bold hover:opacity-90 transition-all shadow-lg flex items-center justify-center gap-2">
+                            <span>Draft Response ✨</span>
+                        </button>
+
+                         <!-- Result Area -->
+                        <div id="resultEmailContainer" class="hidden mt-4">
+                            <label class="block text-sm font-medium text-slate-300 mb-1">AI Generated Draft:</label>
+                            <div class="relative">
+                                <textarea id="resultEmail" rows="6" readonly class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-slate-200 text-sm focus:outline-none"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-24 relative">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-display font-bold text-white mb-4">Professional <span class="text-gradient">Journey</span></h2>
+                <div class="h-1 w-20 bg-gradient-to-r from-primary to-accent mx-auto rounded-full"></div>
+            </div>
+
+            <div class="relative">
+                <!-- Vertical Line -->
+                <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 h-full w-0.5 bg-white/10"></div>
+
+                <!-- Job 1 -->
+                <div class="relative mb-12 md:mb-24 pl-12 md:pl-0">
+                    <div class="md:flex items-center justify-between w-full">
+                        <div class="md:w-5/12 mb-4 md:mb-0 order-1 md:text-right md:pr-12" data-aos="fade-right">
+                            <h3 class="text-2xl font-bold text-white">Administrative Assistant</h3>
+                            <p class="text-primary font-medium mb-2">EMASS SERVICES (Remote, Canada)</p>
+                            <span class="text-sm text-slate-400 inline-block mb-4 px-3 py-1 bg-white/5 rounded-full">Aug 2021 - Feb 2023</span>
+                            <p class="text-slate-300 text-sm">
+                                Managed E-commerce tasks for Amazon and other platforms. Handled customer inquiries, processed orders, and tracked shipments.
+                            </p>
+                        </div>
+                        
+                        <div class="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 flex items-center justify-center order-2 bg-darker p-1 rounded-full border border-white/10">
+                            <div class="w-3 h-3 bg-primary rounded-full"></div>
+                        </div>
+                        
+                        <div class="md:w-5/12 order-3"></div>
+                    </div>
+                </div>
+
+                <!-- Job 2 -->
+                <div class="relative pl-12 md:pl-0">
+                    <div class="md:flex items-center justify-between w-full">
+                        <div class="md:w-5/12 order-1"></div>
+                        
+                         <div class="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 flex items-center justify-center order-2 bg-darker p-1 rounded-full border border-white/10">
+                            <div class="w-3 h-3 bg-secondary rounded-full"></div>
+                        </div>
+                        
+                        <div class="md:w-5/12 order-3 md:pl-12" data-aos="fade-left">
+                            <h3 class="text-2xl font-bold text-white">Administrator</h3>
+                            <p class="text-secondary font-medium mb-2">Pure Gold Technologies</p>
+                            <span class="text-sm text-slate-400 inline-block mb-4 px-3 py-1 bg-white/5 rounded-full">Sept 2019 - Mar 2021</span>
+                            <p class="text-slate-300 text-sm">
+                                Managed E-commerce operations and provided top-notch customer support. Handled complaints, inventory management, and social media accounts.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 relative overflow-hidden bg-black/20">
+        <!-- Background Decor -->
+        <div class="absolute right-0 top-1/4 w-64 h-64 bg-accent/10 rounded-full blur-[80px] -z-10"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-display font-bold text-white mb-4">Technical <span class="text-gradient">Expertise</span></h2>
+                <div class="h-1 w-20 bg-gradient-to-r from-primary to-accent mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Skill Card 1 -->
+                <div class="glass-card p-6 rounded-xl" data-aos="fade-up" data-aos-delay="0">
+                    <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mb-4 text-blue-400">
+                        <i data-lucide="monitor" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Office & Admin</h3>
+                    <ul class="space-y-2 text-slate-300 text-sm">
+                        <li class="flex items-center"><i data-lucide="check-circle" class="w-4 h-4 mr-2 text-accent"></i>Microsoft Office Suite</li>
+                        <li class="flex items-center"><i data-lucide="check-circle" class="w-4 h-4 mr-2 text-accent"></i>Data Entry & Management</li>
+                        <li class="flex items-center"><i data-lucide="check-circle" class="w-4 h-4 mr-2 text-accent"></i>CRM Tools</li>
+                        <li class="flex items-center"><i data-lucide="check-circle" class="w-4 h-4 mr-2 text-accent"></i>Documentation</li>
+                    </ul>
+                </div>
+
+                <!-- Skill Card 2 -->
+                <div class="glass-card p-6 rounded-xl" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center mb-4 text-purple-400">
+                        <i data-lucide="globe" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Web & Tech</h3>
+                    <ul class="space-y-2 text-slate-300 text-sm">
+                        <li class="flex items-center"><i data-lucide="check-circle" class="w-4 h-4 mr-2 text-accent"></i>WordPress (Staging/Setup)</li>
+                        <li class="flex items-center"><i data-lucide="check-circle" class="w-4 h-4 mr-2 text-accent"></i>HTML5 & CSS3</li>
+                        <li class="flex items-center"><i data-lucide="check-circle" class="w-4 h-4 mr-2 text-accent"></i>JavaScript Basics</li>
+                        <li class="flex items-center"><i data-lucide="check-circle" class="w-4 h-4 mr-2 text-accent"></i>Git & GitHub</li>
+                    </ul>
+                </div>
+
+                <!-- Skill Card 3 -->
+                <div class="glass-card p-6 rounded-xl" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-12 h-12 bg-teal-500/20 rounded-lg flex items-center justify-center mb-4 text-teal-400">
+                        <i data-lucide="shopping-cart" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Business & E-com</h3>
+                    <ul class="space-y-2 text-slate-300 text-sm">
+                        <li class="flex items-center"><i data-lucide="check-circle" class="w-4 h-4 mr-2 text-accent"></i>LLC & LTD Formation</li>
+                        <li class="flex items-center"><i data-lucide="check-circle" class="w-4 h-4 mr-2 text-accent"></i>Amazon Operations</li>
+                        <li class="flex items-center"><i data-lucide="check-circle" class="w-4 h-4 mr-2 text-accent"></i>Inventory Management</li>
+                        <li class="flex items-center"><i data-lucide="check-circle" class="w-4 h-4 mr-2 text-accent"></i>Social Media Marketing</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="py-24 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-display font-bold text-white mb-4">Education</h2>
+                <div class="h-1 w-20 bg-gradient-to-r from-primary to-accent mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="space-y-4">
+                <div class="glass-card p-6 rounded-xl flex items-start gap-4" data-aos="fade-up">
+                    <div class="mt-1 bg-white/10 p-2 rounded-full"><i data-lucide="graduation-cap" class="w-5 h-5 text-primary"></i></div>
+                    <div>
+                        <h4 class="text-xl font-bold text-white">Bachelor of Science in Computer Science</h4>
+                        <p class="text-slate-400">The Islamia University of Bahawalpur | 2021 - 2023</p>
+                    </div>
+                </div>
+                <div class="glass-card p-6 rounded-xl flex items-start gap-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="mt-1 bg-white/10 p-2 rounded-full"><i data-lucide="book" class="w-5 h-5 text-secondary"></i></div>
+                    <div>
+                        <h4 class="text-xl font-bold text-white">Intermediate in Computer Science (ICS)</h4>
+                        <p class="text-slate-400">The PGS Boys College | 2018 - 2020</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 relative">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-primary/5 pointer-events-none"></div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="glass-card rounded-2xl p-8 md:p-16 text-center border border-primary/20 shadow-2xl shadow-primary/10" data-aos="zoom-in">
+                <h2 class="text-3xl md:text-5xl font-display font-bold text-white mb-6">Let's Work Together</h2>
+                <p class="text-lg text-slate-300 mb-8 max-w-xl mx-auto">
+                    Ready to streamline your operations or set up your business? I am just a click away.
+                </p>
+                
+                <div class="flex flex-col md:flex-row justify-center gap-6 mb-10">
+                    <!-- Obfuscated Email Link via JS -->
+                    <a href="#" onclick="window.location.href='mailto:anasq2730@gmail.com'" class="flex items-center justify-center gap-3 bg-white text-darker px-8 py-4 rounded-full font-bold hover:scale-105 transition-transform">
+                        <i data-lucide="mail" class="w-5 h-5"></i> 
+                        <span id="email-display">Click to Email</span>
+                        <script>
+                            // Simple JS to show email on load, keeping raw HTML slightly cleaner
+                            setTimeout(() => {
+                                document.getElementById('email-display').innerText = 'anasq2730@gmail.com';
+                            }, 500);
+                        </script>
+                    </a>
+                    
+                    <!-- Phone Link -->
+                    <a href="tel:+923056557927" class="flex items-center justify-center gap-3 bg-white/5 text-white border border-white/10 px-8 py-4 rounded-full font-bold hover:bg-white/10 transition-colors">
+                        <i data-lucide="phone" class="w-5 h-5"></i> +92 305 6557927
+                    </a>
+                </div>
+                
+                <div class="flex justify-center gap-6">
+                     <a href="https://www.linkedin.com/in/muhammad-anas-1b41ab202" target="_blank" class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary hover:text-white transition-all text-slate-400">
+                        <i data-lucide="linkedin" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center hover:bg-black hover:text-white transition-all text-slate-400">
+                        <i data-lucide="github" class="w-5 h-5"></i>
+                    </a>
+                </div>
+                
+                <p class="mt-12 text-slate-500 text-sm">
+                    © 2025 Muhammad Anas Qureshi. Multan, Punjab, Pakistan.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+        
+        // Initialize Animations
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 800,
+        });
+
+        // Mobile Menu Toggle Logic
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
+        // GEMINI API LOGIC
+        const apiKey = "AIzaSyAZwxtYdGsnPeRD48ziqHNJOQ5tls43d4s"; 
+
+        async function callGemini(prompt) {
+            if (!apiKey) {
+                alert("Please add your Gemini API Key in the code to make the AI features work!");
+                return "Error: API Key missing.";
+            }
+
+            try {
+                const response = await fetch(
+                    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`,
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            contents: [{
+                                parts: [{ text: prompt }]
+                            }]
+                        })
+                    }
+                );
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    console.error("API Error Details:", errorData);
+                    throw new Error('API Error');
+                }
+
+                const data = await response.json();
+                return data.candidates[0].content.parts[0].text;
+            } catch (error) {
+                console.error("Gemini API Error:", error);
+                return "Error: Could not generate response. Please check your connection, API Key, or Quota.";
+            }
+        }
+
+        // Tool 1: Amazon Description Generator
+        async function generateDescription() {
+            const name = document.getElementById('productName').value;
+            const features = document.getElementById('productFeatures').value;
+            const btn = document.getElementById('btnDesc');
+            const resultContainer = document.getElementById('resultDescContainer');
+            const resultBox = document.getElementById('resultDesc');
+
+            if (!name || !features) {
+                alert("Please fill in both Product Name and Features.");
+                return;
+            }
+
+            // Loading State
+            const originalBtnText = btn.innerHTML;
+            btn.innerHTML = '<div class="loader"></div> Generating...';
+            btn.disabled = true;
+
+            const prompt = `You are an Amazon SEO Expert and Copywriter. Write a compelling, sales-optimized Amazon product description (approx 150 words) for a product named "${name}". 
+            Include these key features/keywords naturally: ${features}. 
+            Format it with a catchy headline and bullet points if appropriate. Tone: Professional, Exciting, Persuasive.`;
+
+            const text = await callGemini(prompt);
+
+            // Show Result
+            resultBox.value = text;
+            resultContainer.classList.remove('hidden');
+            
+            // Reset Button
+            btn.innerHTML = originalBtnText;
+            btn.disabled = false;
+        }
+
+        // Tool 2: Email Drafter
+        async function draftEmail() {
+            const context = document.getElementById('emailContext').value;
+            const btn = document.getElementById('btnEmail');
+            const resultContainer = document.getElementById('resultEmailContainer');
+            const resultBox = document.getElementById('resultEmail');
+
+            if (!context) {
+                alert("Please enter the customer message or context.");
+                return;
+            }
+
+            // Loading State
+            const originalBtnText = btn.innerHTML;
+            btn.innerHTML = '<div class="loader"></div> Drafting...';
+            btn.disabled = true;
+
+            const prompt = `You are a Senior Customer Support Specialist for an e-commerce store. 
+            Draft a professional, empathetic, and polite email response to the following customer issue/context: "${context}".
+            Ensure the tone is helpful and resolves the situation gracefully. Sign off as "Muhammad Anas, Customer Support Team".`;
+
+            const text = await callGemini(prompt);
+
+            // Show Result
+            resultBox.value = text;
+            resultContainer.classList.remove('hidden');
+
+            // Reset Button
+            btn.innerHTML = originalBtnText;
+            btn.disabled = false;
+        }
+    </script>
+</body>
+</html>
