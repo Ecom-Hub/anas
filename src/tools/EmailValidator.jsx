@@ -8,7 +8,7 @@ import { useMergedSheet } from './useMergedSheet'
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 export default function EmailValidator() {
-  const { files, headers, rows, busy, format, addFiles, removeFile } = useMergedSheet()
+  const { files, sheets, activeSheetIndex, setActiveSheetIndex, headers, rows, busy, format, addFiles, removeFile } = useMergedSheet()
   const [column, setColumn] = useState('')
   const [result, setResult] = useState(null)
 
@@ -27,7 +27,7 @@ export default function EmailValidator() {
 
   return (
     <div className="tool-body">
-      <MultiFilePicker id="emailval-input" files={files} busy={busy} onAdd={addFiles} onRemove={removeFile} />
+      <MultiFilePicker id="emailval-input" files={files} sheets={sheets} activeSheetIndex={activeSheetIndex} busy={busy} onAdd={addFiles} onRemove={removeFile} onSelectSheet={setActiveSheetIndex} />
 
       {headers.length > 0 && (
         <>

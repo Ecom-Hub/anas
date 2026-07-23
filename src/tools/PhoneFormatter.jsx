@@ -6,7 +6,7 @@ import MultiFilePicker from './MultiFilePicker'
 import { useMergedSheet } from './useMergedSheet'
 
 export default function PhoneFormatter() {
-  const { files, headers, rows, busy, format, addFiles, removeFile } = useMergedSheet()
+  const { files, sheets, activeSheetIndex, setActiveSheetIndex, headers, rows, busy, format, addFiles, removeFile } = useMergedSheet()
   const [column, setColumn] = useState('')
   const [countryCode, setCountryCode] = useState('+1')
   const [result, setResult] = useState(null)
@@ -27,7 +27,7 @@ export default function PhoneFormatter() {
 
   return (
     <div className="tool-body">
-      <MultiFilePicker id="phone-input" files={files} busy={busy} onAdd={addFiles} onRemove={removeFile} />
+      <MultiFilePicker id="phone-input" files={files} sheets={sheets} activeSheetIndex={activeSheetIndex} busy={busy} onAdd={addFiles} onRemove={removeFile} onSelectSheet={setActiveSheetIndex} />
 
       {headers.length > 0 && (
         <>

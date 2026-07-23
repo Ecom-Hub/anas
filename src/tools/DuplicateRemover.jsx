@@ -6,7 +6,7 @@ import MultiFilePicker from './MultiFilePicker'
 import { useMergedSheet } from './useMergedSheet'
 
 export default function DuplicateRemover() {
-  const { files, headers, rows, busy, format, addFiles, removeFile } = useMergedSheet()
+  const { files, sheets, activeSheetIndex, setActiveSheetIndex, headers, rows, busy, format, addFiles, removeFile } = useMergedSheet()
   const [column, setColumn] = useState('')
   const [result, setResult] = useState(null)
 
@@ -24,7 +24,7 @@ export default function DuplicateRemover() {
 
   return (
     <div className="tool-body">
-      <MultiFilePicker id="dup-input" files={files} busy={busy} onAdd={addFiles} onRemove={removeFile} />
+      <MultiFilePicker id="dup-input" files={files} sheets={sheets} activeSheetIndex={activeSheetIndex} busy={busy} onAdd={addFiles} onRemove={removeFile} onSelectSheet={setActiveSheetIndex} />
 
       {headers.length > 0 && (
         <>

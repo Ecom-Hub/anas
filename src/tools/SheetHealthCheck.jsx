@@ -3,7 +3,7 @@ import MultiFilePicker from './MultiFilePicker'
 import { useMergedSheet } from './useMergedSheet'
 
 export default function SheetHealthCheck() {
-  const { files, headers, rows, busy, addFiles, removeFile } = useMergedSheet()
+  const { files, sheets, activeSheetIndex, setActiveSheetIndex, headers, rows, busy, addFiles, removeFile } = useMergedSheet()
   const [dupeCol, setDupeCol] = useState('')
 
   useEffect(() => { if (headers.length) setDupeCol(headers.find((h) => /email/i.test(h)) || headers[0]) }, [headers])
@@ -19,7 +19,7 @@ export default function SheetHealthCheck() {
 
   return (
     <div className="tool-body">
-      <MultiFilePicker id="health-input" files={files} busy={busy} onAdd={addFiles} onRemove={removeFile} />
+      <MultiFilePicker id="health-input" files={files} sheets={sheets} activeSheetIndex={activeSheetIndex} busy={busy} onAdd={addFiles} onRemove={removeFile} onSelectSheet={setActiveSheetIndex} />
 
       {headers.length > 0 && (
         <>

@@ -6,7 +6,7 @@ import MultiFilePicker from './MultiFilePicker'
 import { useMergedSheet } from './useMergedSheet'
 
 export default function ColumnSelector() {
-  const { files, headers, rows, busy, format, addFiles, removeFile } = useMergedSheet()
+  const { files, sheets, activeSheetIndex, setActiveSheetIndex, headers, rows, busy, format, addFiles, removeFile } = useMergedSheet()
   const [selected, setSelected] = useState([])
 
   useEffect(() => { setSelected(headers) }, [headers])
@@ -15,7 +15,7 @@ export default function ColumnSelector() {
 
   return (
     <div className="tool-body">
-      <MultiFilePicker id="colsel-input" files={files} busy={busy} onAdd={addFiles} onRemove={removeFile} />
+      <MultiFilePicker id="colsel-input" files={files} sheets={sheets} activeSheetIndex={activeSheetIndex} busy={busy} onAdd={addFiles} onRemove={removeFile} onSelectSheet={setActiveSheetIndex} />
 
       {headers.length > 0 && (
         <>

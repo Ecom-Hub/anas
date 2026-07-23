@@ -1,24 +1,29 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { parseTabular } from './sheetUtils'
 
 // Manages one or more uploaded CSV/Excel files, merged into a single table
 // (rows concatenated, headers unioned by name).
 export function useMergedSheet() {
   const [files, setFiles] = useState([])
-  const [headers, setHeaders] = useState([])
-  const [rows, setRows] = useState([])
+  const [sheets, setSheets] = useState([])
   const [busy, setBusy] = useState(false)
-  const [format, setFormat] = useState('csv')
+  const [activeSheetIndex, setActiveSheetIndex] = useState(0)
 
   const reparse = async (fileArr) => {
     setBusy(true)
     try {
       const parsed = await Promise.all(fileArr.map(parseTabular))
-      const headerSet = new Set()
-      parsed.forEach((p) => p.headers.forEach((h) => headerSet.add(h)))
-      setHeaders(Array.from(headerSet))
-      setRows(parsed.flatMap((p) => p.rows))
-      if (fileArr.length) setFormat(fileArr[0].name.toLowerCase().endsWith('.csv') ? 'csv' : 'xlsx')
+      setSheets(parsed.map((sheet, index) => ({
+        file: fileArr[index],
+        headers: sheet.headers,
+        rows: sheet.rows,
+        format: fileArr[index].name.toLowerCase().endsWith('.csv') ? 'csv' : 'xlsx',
+      })))
+      setActiveSheetIndex((current) => {
+        if (!fileArr.length) return 0
+        return Math.min(current, fileArr.length - 1)
+      })
+      if (!fileArr.length) setSheets([])
     } finally {
       setBusy(false)
     }
@@ -36,5 +41,24 @@ export function useMergedSheet() {
     await reparse(newFiles)
   }
 
-  return { files, headers, rows, busy, format, addFiles, removeFile, setHeaders, setRows }
+  const activeSheet = sheets[activeSheetIndex] || null
+  const headers = activeSheet?.headers || []
+  const rows = activeSheet?.rows || []
+  const format = activeSheet?.format || (files[0]?.name?.toLowerCase()?.endsWith('.csv') ? 'csv' : files.length ? 'xlsx' : 'csv')
+
+  const value = useMemo(() => ({
+    files,
+    sheets,
+    activeSheetIndex,
+    activeSheet,
+    headers,
+    rows,
+    busy,
+    format,
+    addFiles,
+    removeFile,
+    setActiveSheetIndex,
+  }), [files, sheets, activeSheetIndex, activeSheet, headers, rows, busy, format])
+
+  return value
 }

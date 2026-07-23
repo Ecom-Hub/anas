@@ -17,7 +17,7 @@ let uid = 0
 const nextId = () => `f${uid++}`
 
 export default function OutreachColumnMapper() {
-  const { files, headers, rows, busy, addFiles, removeFile } = useMergedSheet()
+  const { files, sheets, activeSheetIndex, setActiveSheetIndex, headers, rows, busy, addFiles, removeFile } = useMergedSheet()
   // fields: [{ id, target, source }]
   const [fields, setFields] = useState([])
 
@@ -40,7 +40,7 @@ export default function OutreachColumnMapper() {
 
   return (
     <div className="tool-body">
-      <MultiFilePicker id="mapper-input" files={files} busy={busy} onAdd={addFiles} onRemove={removeFile} label="Click to add your outreach sheet(s) — CSV or Excel, combine as many as you need" />
+      <MultiFilePicker id="mapper-input" files={files} sheets={sheets} activeSheetIndex={activeSheetIndex} busy={busy} onAdd={addFiles} onRemove={removeFile} onSelectSheet={setActiveSheetIndex} label="Click to add your outreach sheet(s) — CSV or Excel, combine as many as you need" />
 
       {headers.length > 0 && (
         <>

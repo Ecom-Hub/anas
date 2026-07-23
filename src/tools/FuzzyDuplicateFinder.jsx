@@ -19,7 +19,7 @@ function similarity(a, b) {
 }
 
 export default function FuzzyDuplicateFinder() {
-  const { files, headers, rows, busy, addFiles, removeFile } = useMergedSheet()
+  const { files, sheets, activeSheetIndex, setActiveSheetIndex, headers, rows, busy, addFiles, removeFile } = useMergedSheet()
   const [column, setColumn] = useState('')
   const [threshold, setThreshold] = useState(0.85)
   const [groups, setGroups] = useState(null)
@@ -47,7 +47,7 @@ export default function FuzzyDuplicateFinder() {
 
   return (
     <div className="tool-body">
-      <MultiFilePicker id="fuzzy-input" files={files} busy={busy} onAdd={addFiles} onRemove={removeFile} />
+      <MultiFilePicker id="fuzzy-input" files={files} sheets={sheets} activeSheetIndex={activeSheetIndex} busy={busy} onAdd={addFiles} onRemove={removeFile} onSelectSheet={setActiveSheetIndex} />
 
       {headers.length > 0 && (
         <>

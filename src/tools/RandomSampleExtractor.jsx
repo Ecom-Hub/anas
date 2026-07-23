@@ -6,7 +6,7 @@ import MultiFilePicker from './MultiFilePicker'
 import { useMergedSheet } from './useMergedSheet'
 
 export default function RandomSampleExtractor() {
-  const { files, headers, rows, busy, format, addFiles, removeFile } = useMergedSheet()
+  const { files, sheets, activeSheetIndex, setActiveSheetIndex, headers, rows, busy, format, addFiles, removeFile } = useMergedSheet()
   const [n, setN] = useState(10)
   const [result, setResult] = useState(null)
 
@@ -19,7 +19,7 @@ export default function RandomSampleExtractor() {
 
   return (
     <div className="tool-body">
-      <MultiFilePicker id="sample-input" files={files} busy={busy} onAdd={addFiles} onRemove={removeFile} />
+      <MultiFilePicker id="sample-input" files={files} sheets={sheets} activeSheetIndex={activeSheetIndex} busy={busy} onAdd={addFiles} onRemove={removeFile} onSelectSheet={setActiveSheetIndex} />
 
       {headers.length > 0 && (
         <>

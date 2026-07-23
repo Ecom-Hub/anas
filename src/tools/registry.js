@@ -14,6 +14,7 @@ export const tools = [
   // Sheets & Lists
   { id: 'dup-remove', category: 'Sheets & Lists', name: 'Duplicate Remover', desc: 'Remove duplicate rows based on a column you pick.', icon: '🧹', component: lazy(() => import('./DuplicateRemover')) },
   { id: 'merge-sheets', category: 'Sheets & Lists', name: 'Merge Multiple Sheets', desc: 'Combine several CSV/Excel files into one.', icon: '📑', component: lazy(() => import('./MergeSheets')) },
+  { id: 'workflow-builder', category: 'Sheets & Lists', name: 'Workflow Builder', desc: 'Chain dedupe, filter, normalize, and extract steps into one pipeline.', icon: '⚙️', badge: 'Preview the full pipeline', component: lazy(() => import('./WorkflowBuilder')) },
   { id: 'col-select', category: 'Sheets & Lists', name: 'Column Selector', desc: 'Keep only the columns you need.', icon: '📋', component: lazy(() => import('./ColumnSelector')) },
   { id: 'outreach-map', category: 'Sheets & Lists', name: 'Outreach Column Mapper', desc: 'Map messy headers to clean fields for PlusVibe / Instantly.', icon: '🎯', component: lazy(() => import('./OutreachColumnMapper')) },
   { id: 'email-validate', category: 'Sheets & Lists', name: 'Email Validator & Cleaner', desc: 'Flag invalid emails, trim and lowercase the rest.', icon: '✅', component: lazy(() => import('./EmailValidator')) },
@@ -64,6 +65,8 @@ export const tools = [
   // Design
   { id: 'color-palette', category: 'Design', name: 'Color Palette Generator', desc: 'Generate a palette from one base color.', icon: '🎨', component: lazy(() => import('./ColorPaletteGenerator')) },
   { id: 'gradient-gen', category: 'Design', name: 'Gradient Generator', desc: 'Build a CSS gradient visually.', icon: '🌈', component: lazy(() => import('./GradientGenerator')) },
+  { id: 'qr-gen', category: 'Design', name: 'QR Code Generator', desc: 'Create QR codes from text, URLs, or contact info.', icon: '◼️', component: lazy(() => import('./QRCodeGenerator')) },
+  { id: 'barcode-gen', category: 'Design', name: 'Barcode Generator', desc: 'Generate barcodes for text or product codes.', icon: '▥', component: lazy(() => import('./BarcodeGenerator')) },
   { id: 'color-extract', category: 'Design', name: 'Extract Colors From Image', desc: 'Pull the dominant colors out of a photo.', icon: '🧪', component: lazy(() => import('./ImageColorExtractor')) },
 
   // Security

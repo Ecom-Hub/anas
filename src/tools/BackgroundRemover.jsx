@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { downloadBlob, readAsDataURL } from './utils'
 
 export default function BackgroundRemover() {
@@ -6,6 +6,10 @@ export default function BackgroundRemover() {
   const [result, setResult] = useState('')
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
+
+  useEffect(() => () => {
+    if (result) URL.revokeObjectURL(result)
+  }, [result])
 
   const onFile = async (file) => {
     setError(''); setResult('')
@@ -25,8 +29,16 @@ export default function BackgroundRemover() {
 
   return (
     <div className="tool-body">
-      <div className="dropzone" onClick={() => document.getElementById('bgremove-input').click()}>
-        <p>Click to choose a photo</p>
+      <div className="dropzone" style={{ pointerEvents: busy ? 'none' : 'auto', opacity: busy ? 0.9 : 1 }} onClick={() => document.getElementById('bgremove-input').click()}>
+        {busy ? (
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }}>
+            <span className="spinner" style={{ borderTopColor: 'var(--accent)', borderColor: 'rgba(0, 113, 227, .18)' }} />
+            <p>Removing background…</p>
+            <div className="hint-text">The image is being processed locally. First runs can take a moment.</div>
+          </div>
+        ) : (
+          <p>Click to choose a photo</p>
+        )}
       </div>
       <input id="bgremove-input" type="file" accept="image/*" style={{ display: 'none' }} onChange={(e) => e.target.files[0] && onFile(e.target.files[0])} />
 

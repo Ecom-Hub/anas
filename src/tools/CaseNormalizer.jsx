@@ -8,7 +8,7 @@ import { useMergedSheet } from './useMergedSheet'
 const toTitle = (s) => s.replace(/\w\S*/g, (t) => t[0].toUpperCase() + t.slice(1).toLowerCase())
 
 export default function CaseNormalizer() {
-  const { files, headers, rows, busy, format, addFiles, removeFile } = useMergedSheet()
+  const { files, sheets, activeSheetIndex, setActiveSheetIndex, headers, rows, busy, format, addFiles, removeFile } = useMergedSheet()
   const [column, setColumn] = useState('')
   const [mode, setMode] = useState('lower')
   const [result, setResult] = useState(null)
@@ -26,7 +26,7 @@ export default function CaseNormalizer() {
 
   return (
     <div className="tool-body">
-      <MultiFilePicker id="case-input" files={files} busy={busy} onAdd={addFiles} onRemove={removeFile} />
+      <MultiFilePicker id="case-input" files={files} sheets={sheets} activeSheetIndex={activeSheetIndex} busy={busy} onAdd={addFiles} onRemove={removeFile} onSelectSheet={setActiveSheetIndex} />
 
       {headers.length > 0 && (
         <>

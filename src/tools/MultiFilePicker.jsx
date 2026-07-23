@@ -1,4 +1,4 @@
-export default function MultiFilePicker({ id, files, busy, onAdd, onRemove, label }) {
+export default function MultiFilePicker({ id, files, sheets, activeSheetIndex = 0, busy, onAdd, onRemove, onSelectSheet, label }) {
   return (
     <>
       <div className="dropzone" onClick={() => document.getElementById(id).click()}>
@@ -8,6 +8,20 @@ export default function MultiFilePicker({ id, files, busy, onAdd, onRemove, labe
             : (label || 'Click to add CSV/Excel file(s) — add more anytime, they\u2019ll be combined')}
         </p>
       </div>
+      {Array.isArray(sheets) && sheets.length > 0 && (
+        <div className="tool-tabs" style={{ marginTop: 14, marginBottom: 0 }}>
+          {sheets.map((sheet, index) => (
+            <button
+              key={`${sheet.file?.name || 'sheet'}-${index}`}
+              className={`tool-tab ${activeSheetIndex === index ? 'active' : ''}`}
+              onClick={() => onSelectSheet && onSelectSheet(index)}
+              type="button"
+            >
+              {sheet.file?.name || `Sheet ${index + 1}`}
+            </button>
+          ))}
+        </div>
+      )}
       <input
         id={id}
         type="file"

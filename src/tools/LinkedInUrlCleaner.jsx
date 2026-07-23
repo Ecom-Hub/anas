@@ -19,7 +19,7 @@ function cleanUrl(raw) {
 }
 
 export default function LinkedInUrlCleaner() {
-  const { files, headers, rows, busy, format, addFiles, removeFile } = useMergedSheet()
+  const { files, sheets, activeSheetIndex, setActiveSheetIndex, headers, rows, busy, format, addFiles, removeFile } = useMergedSheet()
   const [column, setColumn] = useState('')
   const [result, setResult] = useState(null)
 
@@ -29,7 +29,7 @@ export default function LinkedInUrlCleaner() {
 
   return (
     <div className="tool-body">
-      <MultiFilePicker id="li-input" files={files} busy={busy} onAdd={addFiles} onRemove={removeFile} />
+      <MultiFilePicker id="li-input" files={files} sheets={sheets} activeSheetIndex={activeSheetIndex} busy={busy} onAdd={addFiles} onRemove={removeFile} onSelectSheet={setActiveSheetIndex} />
 
       {headers.length > 0 && (
         <>
